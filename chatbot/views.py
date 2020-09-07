@@ -1,15 +1,14 @@
 import json
+import os
+
 from django.views.generic.base import TemplateView
 from django.views.generic import View
 from django.http import JsonResponse
+
 from chatterbot import ChatBot
 from chatterbot.ext.django_chatterbot import settings
-from chatterbot.trainers import ChatterBotCorpusTrainer
-import os
 from chatbot.settings import CORPUS_DIR
-
-
-
+from chatterbot.trainers import ChatterBotCorpusTrainer
 
 
 class ChatterBotAppView(TemplateView):
@@ -26,9 +25,7 @@ class ChatterBotApiView(View):
     trainer = ChatterBotCorpusTrainer(investi_bot)
 
     corpus = os.path.join(CORPUS_DIR, "investi.yml")
-    trainer.train(
-        corpus
-    )
+    trainer.train(corpus)
 
     def post(self, request, *args, **kwargs):
         """
@@ -43,7 +40,6 @@ class ChatterBotApiView(View):
             )
 
         response = self.investi_bot.get_response(input_data)
-
         response_data = response.serialize()
 
         return JsonResponse(response_data, status=200)
