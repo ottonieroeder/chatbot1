@@ -18,9 +18,7 @@ SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -32,12 +30,10 @@ INSTALLED_APPS = [
 ]
 
 # ChatterBot settings
-
 CHATTERBOT = {
-    'name': 'Django ChatterBot Example',
-    'django_app_name': 'django_chatterbot'
+    "name": "Django ChatterBot Example",
+    "django_app_name": "django_chatterbot",
 }
-
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -54,7 +50,7 @@ ROOT_URLCONF = "chatbot.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(SETTINGS_PATH, 'chatbot/templates')],
+        "DIRS": [os.path.join(SETTINGS_PATH, "chatbot/templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -117,6 +113,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = "/static/"
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
 
-CORPUS_DIR = os.path.join(BASE_DIR, "chatbot/corpus")
+STATIC_URL = "static/"
+STATICFILES_DIRS = [
+    BASE_DIR / "chatbot/static/"
+]
+
+CORPUS_DIR = str(BASE_DIR.joinpath("chatbot/corpus"))
