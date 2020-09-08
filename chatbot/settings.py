@@ -16,7 +16,7 @@ DEBUG = True
 
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['getridofyourjob.pythonanywhere.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -124,3 +124,7 @@ STATICFILES_DIRS = [
 ]
 
 CORPUS_DIR = str(BASE_DIR.joinpath("chatbot/corpus"))
+
+MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -38,6 +38,7 @@
         </header>
         <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
         <script src="{% static 'js/chatbot.js' %}"></script>
+        {% csrf_token %}
         <script>
             var chatterbotUrl = '{% url "chatterbot" %}';
             var csrftoken = Cookies.get('csrftoken');
