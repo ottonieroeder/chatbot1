@@ -3,13 +3,12 @@ const addUserInputToLog = (inputValue) => {
     const containerRow = document.createElement("div")
     const containerCol = document.createElement("div")
     const tag = document.createElement("p");
-    const text = document.createTextNode(inputValue);
+    const text = document.createTextNode("You: " + inputValue);
     containerRow.classList.add("row");
     containerRow.classList.add("no-gutters");
     containerRow.classList.add("justify-content-end");
-    containerCol.classList.add("col-4");
+    containerCol.classList.add("col-7");
     tag.classList.add("bubble-right");
-
     tag.appendChild(text);
     containerCol.appendChild(tag);
     containerRow.appendChild(containerCol);
@@ -21,10 +20,9 @@ const addBotAnswerToLog = (botResponse) => {
     const tag = document.createElement("p");
     const containerRow = document.createElement("div");
     const containerCol = document.createElement("div");
-    const text = document.createTextNode(botResponse);
-
+    const text = document.createTextNode("ISABOT: " + botResponse);
     containerRow.classList.add("row");
-    containerCol.classList.add("col-4");
+    containerCol.classList.add("col-7");
     tag.classList.add("bubble-left");
 
     tag.appendChild(text);
