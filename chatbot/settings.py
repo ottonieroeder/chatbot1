@@ -16,7 +16,7 @@ DEBUG = True
 
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 
-ALLOWED_HOSTS = ['getridofyourjob.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'getridofyourjob.pythonanywhere.com']
 
 # Application definition
 INSTALLED_APPS = [
