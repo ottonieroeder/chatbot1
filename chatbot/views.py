@@ -6,9 +6,12 @@ from django.views.generic import View
 from django.http import JsonResponse
 
 from chatterbot import ChatBot
-from chatterbot.ext.django_chatterbot import settings
+from chatterbot import comparisons, response_selection
 from chatbot.settings import CORPUS_DIR
 from chatterbot.trainers import ChatterBotCorpusTrainer
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 
 class ChatterBotAppView(TemplateView):
@@ -20,9 +23,18 @@ class ChatterBotApiView(View):
     Provide an API endpoint to interact with ChatterBot.
     """
 
-    investi_bot = ChatBot(**settings.CHATTERBOT)
+    isa_bot = ChatBot(
+        "Isabot",
+        logic_adapters=[
+            {
+                "import_path": "chatterbot.logic.BestMatch",
+                "statement_comparison_function": comparisons.LevenshteinDistance,
+                "response_selection_method": response_selection.get_first_response,
+            },
+        ],
+    )
 
-    trainer = ChatterBotCorpusTrainer(investi_bot)
+    trainer = ChatterBotCorpusTrainer(isa_bot)
 
     corpus = os.path.join(CORPUS_DIR, "investi.yml")
     trainer.train(corpus)
@@ -39,7 +51,7 @@ class ChatterBotApiView(View):
                 {"text": ['The attribute "text" is required.']}, status=400
             )
 
-        response = self.investi_bot.get_response(input_data)
+        response = self.isa_bot.get_response(input_data)
         response_data = response.serialize()
 
         return JsonResponse(response_data, status=200)
@@ -48,4 +60,4 @@ class ChatterBotApiView(View):
         """
         Return data corresponding to the current conversation.
         """
-        return JsonResponse({"name": self.investi_bot.name})
+        return JsonResponse({"name": self.isa_bot.name})
