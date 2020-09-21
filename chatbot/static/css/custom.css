@@ -64,13 +64,13 @@ form {
 }
 
 .chat-container {
-    background-color: lightgrey;
+    background-color: rgba(255, 255, 255, 0.4);
     font-family: 'Source Code Pro', monospace;
     padding: 1rem;
 }
 
 .chat {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.5);
     padding: 1rem 1rem 1rem 2rem;
     height: 400px;
     overflow: scroll;
@@ -78,20 +78,20 @@ form {
     border-top-right-radius: 0;
 }
 
-/*.input-group>.custom-select:not(:first-child), .input-group>.form-control:not(:first-child) {*/
-
-/*}*/
+#user-input {
+    background-color: rgba(255, 255, 255, 0.5);
+}
 
 #submit-btn {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    background-color: darkgrey;
-    border-color: transparent;
+    background-color: grey;
+    border-color: grey;
     font-weight: 900;
 }
 
 #submit-btn:hover {
-    background-color: grey;
+    background-color: #565555;
 }
 
 @media (min-width: 100px) {
@@ -100,7 +100,6 @@ form {
     }
 
     .chat {
-        background-color: white;
         padding: 0.5rem 1rem 1rem 1rem;
         height: 200px;
     }
@@ -128,9 +127,8 @@ form {
     }
 
     .chat {
-        background-color: white;
         padding: 1rem 1rem 1rem 2rem;
-        height: 450px;
+        height: 400px;
     }
 }
 
