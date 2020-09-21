@@ -13,10 +13,10 @@
     <body>
         <header>
             <div class="overlay"></div>
-            <video loop autoplay muted playsinline poster="{% static 'img/beetle.jpg' %}" id="video">
-                <source src="{% static 'img/isabot.mov' %}" type="video/mp4">
-                <source src="{% static 'img/isabot.mp4' %}" type="video/mp4">
+            <video loop autoplay muted preload playsinline poster="{% static 'img/beetle.jpg' %}" id="video">
+                <source src="{% static 'img/isabot.mov' %}" type="video/mov">
                 <source src="{% static 'img/isabot.webm' %}" type="video/webm">
+                <source src="{% static 'img/isabot.mp4' %}" type="video/mp4">
             </video>
 
             <div class="container-fluid h-100">
