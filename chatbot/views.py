@@ -14,15 +14,11 @@ import logging
 logging.basicConfig(level=logging.INFO)
 
 
-class ChatterBotAppView(TemplateView):
+class IsabotAppView(TemplateView):
     template_name = "app.html"
 
 
-class ChatterBotApiView(View):
-    """
-    Provide an API endpoint to interact with ChatterBot.
-    """
-
+class IsabotApiView(View):
     isa_bot = ChatBot(
         "Isabot",
         logic_adapters=[
@@ -44,6 +40,7 @@ class ChatterBotApiView(View):
         Return a response to the statement in the posted data.
         * The JSON data should contain a 'text' attribute.
         """
+
         input_data = json.loads(request.body.decode("utf-8"))
 
         if "text" not in input_data:

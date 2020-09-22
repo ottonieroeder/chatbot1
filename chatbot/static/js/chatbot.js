@@ -46,7 +46,7 @@ async function sendUserInput(event) {
     emptyInputField();
     addUserInputToLog(inputValue);
     scrollToBottom();
-    const url = window.location.origin + chatterbotUrl;
+    const url = window.location.origin + isabotUrl;
     await fetch(url, {
         method: 'POST',
         credentials: 'same-origin',

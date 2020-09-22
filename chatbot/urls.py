@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import path
-from chatbot.views import ChatterBotAppView, ChatterBotApiView
+from chatbot.views import IsabotAppView, IsabotApiView
 
 urlpatterns = [
-    path("", ChatterBotAppView.as_view(), name="main"),
+    path("", IsabotAppView.as_view(), name="main"),
     path("admin/", admin.site.urls),
-    path("api/chatterbot/", ChatterBotApiView.as_view(), name="chatterbot"),
+    path("api/isabot/", IsabotApiView.as_view(), name="isabot"),
 ]
