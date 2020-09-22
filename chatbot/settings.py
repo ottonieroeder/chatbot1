@@ -3,9 +3,11 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', "eda_%24rss6!(1rtxm1mvpyc%b!ao^my)^u%#7atsrf3em71ac")
+SECRET_KEY = os.getenv(
+    "DJANGO_SECRET_KEY", "eda_%24rss6!(1rtxm1mvpyc%b!ao^my)^u%#7atsrf3em71ac"
+)
 
-DEBUG = os.getenv('DJANGO_DEBUG', '') != 'False'
+DEBUG = os.getenv("DJANGO_DEBUG", "") != "False"
 
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 
@@ -20,6 +22,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "chatterbot.ext.django_chatterbot",
+    "chatbot",
 ]
 
 # ChatterBot settings
