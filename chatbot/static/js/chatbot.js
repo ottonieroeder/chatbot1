@@ -55,7 +55,7 @@ async function sendUserInput(event) {
             "X-CSRFToken": csrftoken
         },
         redirect: 'follow',
-        referrerPolicy: 'no-referrer',
+        referrerPolicy: 'same-origin',
         body: JSON.stringify({'text': inputValue})
     }).then(response => response.json()).then(data => {
         addBotAnswerToLog(data.text);
