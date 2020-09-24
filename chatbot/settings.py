@@ -27,9 +27,22 @@ INSTALLED_APPS = [
 ]
 
 # ChatterBot settings
+CORPUS_DIR = str(BASE_DIR.joinpath("chatbot/corpus"))
+
 CHATTERBOT = {
-    "name": "Django ChatterBot Example",
-    "django_app_name": "django_chatterbot",
+    "name": "Isabot",
+    "storage_adapter": "chatterbot.storage.SQLStorageAdapter",
+    'logic_adapters': [
+        {
+            'import_path': 'chatterbot.logic.BestMatch',
+            'default_response': 'I am sorry, but I do not understand.',
+            'maximum_similarity_threshold': 0.1
+        },
+    ],
+    'trainer': 'chatterbot.trainers.ChatterBotCorpusTrainer',
+    'training_data': [
+        os.path.join(CORPUS_DIR, "investi.yml")
+    ]
 }
 
 MIDDLEWARE = [
@@ -119,7 +132,7 @@ STATICFILES_FINDERS = [
 STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "chatbot/static/"]
 
-CORPUS_DIR = str(BASE_DIR.joinpath("chatbot/corpus"))
+
 
 MEDIA_URL = "/media/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
