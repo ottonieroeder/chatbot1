@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 
+from chatterbot import comparisons, response_selection
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv(
@@ -34,6 +36,8 @@ CHATTERBOT = {
     'logic_adapters': [
         {
             'import_path': 'chatterbot.logic.BestMatch',
+            "statement_comparison_function": comparisons.LevenshteinDistance,
+            "response_selection_method": response_selection.get_random_response,
         },
     ],
     'trainer': 'chatterbot.trainers.ChatterBotCorpusTrainer',
