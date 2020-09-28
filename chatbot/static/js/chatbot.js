@@ -1,3 +1,15 @@
+var conversationState = {
+    conversationId: "",
+    botSessionId: "",
+    questionId: 0
+}
+
+const setConversationState = (conversationId, botSessionId, questionId) => {
+    conversationState.conversationId = conversationId;
+    conversationState.botSessionId = botSessionId;
+    conversationState.questionId = questionId;
+}
+
 const addUserInputToLog = (inputValue) => {
     const userContainer = document.querySelector("#chat");
     const containerRow = document.createElement("div")
@@ -32,7 +44,7 @@ const addBotAnswerToLog = (botResponse) => {
 }
 
 const emptyInputField = () => {
-    document.querySelector("#user-input").value="";
+    document.querySelector("#user-input").value = "";
 }
 
 const scrollToBottom = () => {
@@ -40,13 +52,16 @@ const scrollToBottom = () => {
     chat.scrollTop = chat.scrollHeight;
 }
 
+
+
 async function sendUserInput(event) {
     event.preventDefault();
     const inputValue = document.querySelector("#user-input").value;
     emptyInputField();
     addUserInputToLog(inputValue);
     scrollToBottom();
-    const url = window.location.origin + isabotUrl;
+    const url = window.location.origin + postMessageUrl;
+    console.log("state before fetch", conversationState)
     await fetch(url, {
         method: 'POST',
         credentials: 'same-origin',
@@ -56,10 +71,34 @@ async function sendUserInput(event) {
         },
         redirect: 'follow',
         referrerPolicy: 'same-origin',
-        body: JSON.stringify({'text': inputValue})
+        body: JSON.stringify(
+            {
+                "text": inputValue,
+                "conversationId": conversationState.conversationId,
+                "botSessionId": conversationState.botSessionId,
+                "questionId": conversationState.questionId,
+            }
+        )
     }).then(response => response.json()).then(data => {
+        setConversationState(data.conversationId, data.botSessionId, data.questionId);
         addBotAnswerToLog(data.text);
         scrollToBottom();
+        console.log("state after post: ", conversationState);
+    });
+}
+
+function startBotCommunication() {
+    console.log("in start")
+    const url = window.location.origin + getConversationUrl;
+    console.log(window.location.origin + getConversationUrl)
+    fetch(url, {
+        method: 'GET',
+        credentials: 'same-origin',
+    }).then(response => response.json()).then(data => {
+        setConversationState(data.conversationId, data.botSessionId, data.questionId);
+        addBotAnswerToLog(data.text);
+        scrollToBottom();
+        console.log("state after first contact: ", conversationState);
     });
 }
 
@@ -68,4 +107,8 @@ const addEventListenerToForm = () => {
     chatForm.addEventListener("submit", sendUserInput, false);
 }
 
-addEventListenerToForm();
+window.onload = (event) => {
+    console.log('page is fully loaded');
+    addEventListenerToForm();
+    startBotCommunication();
+};

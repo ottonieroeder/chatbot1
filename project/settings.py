@@ -25,25 +25,24 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "chatterbot.ext.django_chatterbot",
+    "rest_framework",
     "chatbot",
 ]
 
 # ChatterBot settings
-CORPUS_DIR = str(BASE_DIR.joinpath("chatbot/corpus"))
+CORPUS_DIR = os.path.join(BASE_DIR, "chatbot/corpus")
 
 CHATTERBOT = {
     "name": "Isabot",
-    'logic_adapters': [
+    "logic_adapters": [
         {
-            'import_path': 'chatterbot.logic.BestMatch',
+            "import_path": "chatterbot.logic.BestMatch",
             "statement_comparison_function": comparisons.LevenshteinDistance,
             "response_selection_method": response_selection.get_random_response,
         },
     ],
-    'trainer': 'chatterbot.trainers.ChatterBotCorpusTrainer',
-    'training_data': [
-        os.path.join(CORPUS_DIR, "investi.yml")
-    ]
+    "trainer": "chatterbot.trainers.ChatterBotCorpusTrainer",
+    "training_data": [os.path.join(CORPUS_DIR, "isabot.yml")],
 }
 
 MIDDLEWARE = [
@@ -57,7 +56,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "chatbot.urls"
+ROOT_URLCONF = "project.urls"
 
 TEMPLATES = [
     {
@@ -75,8 +74,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "chatbot.wsgi.application"
-
+WSGI_APPLICATION = "project.wsgi.application"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -120,20 +119,15 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
-STATICFILES_FINDERS = [
-    "django.contrib.staticfiles.finders.FileSystemFinder",
-    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
 ]
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+# STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
-STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / "chatbot/static/"]
-
-
-
-MEDIA_URL = "/media/"
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# if not DEBUG:
+#     MEDIA_URL = "/media/"
+#     STATIC_ROOT = os.path.join(BASE_DIR, "../chatbot/static")
+#     MEDIA_ROOT = os.path.join(BASE_DIR, "media")
