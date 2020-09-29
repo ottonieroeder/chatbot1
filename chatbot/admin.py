@@ -9,17 +9,18 @@ class BotQuestionInline(admin.StackedInline):
 
 
 class BotSessionAdmin(admin.ModelAdmin):
+    readonly_fields = ["id"]
     inlines = [
         BotQuestionInline,
     ]
 
 
 class ConversationAdmin(admin.ModelAdmin):
-    pass
+    readonly_fields = ["id", "session_id", "last_question"]
 
 
 class UserAnswerAdmin(admin.ModelAdmin):
-    pass
+    readonly_fields = ["id", "conversation", "bot_question", "answer_text"]
 
 
 admin.site.register(BotSession, BotSessionAdmin)
