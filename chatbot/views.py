@@ -60,7 +60,10 @@ def post_message(request: Request) -> Response:
     questionId = request.data.get("questionId")
     user_input = request.data.get("text")
 
-    if conversationId and not bot_session_id:
+    # catch ConversationDoesNotExist
+    conversation = models.Conversation.objects.get(id=conversationId)
+
+    if conversationId != "" and bot_session_id == "":
         isa_response = isa_bot.get_response(user_input)
         response_data["text"] = isa_response.text
         response_data["botSessionId"] = ""
@@ -69,8 +72,6 @@ def post_message(request: Request) -> Response:
 
         return Response(response_data, 200)
 
-    # catch ConversationDoesNotExist
-    conversation = models.Conversation.objects.get(id=conversationId)
     bot_session = models.BotSession.objects.get(id=bot_session_id)
     old_question = models.BotQuestion.objects.get(id=questionId)
     # get next question
