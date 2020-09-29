@@ -35,13 +35,13 @@ def _build_error_response(
     return response
 
 
-def _get_isabot_response(user_input: str, conversation: models.Conversation) -> dict:
+def _get_isabot_response(user_input: str, conversation_id: str) -> dict:
     response_data = {}
     isa_response = isa_bot.get_response(user_input)
     response_data["text"] = isa_response.text
     response_data["botSessionId"] = ""
     response_data["questionId"] = ""
-    response_data["conversationId"] = conversation.id
+    response_data["conversationId"] = conversation_id
 
     return response_data
 
@@ -150,7 +150,6 @@ def post_message(request: Request) -> Response:
             user_input not in keyword_list
             and conversation.last_question == old_question.alternative_question
         ):
-
             return Response(_get_isabot_response(user_input, conversation.id), 200)
 
         # Return alternative question
