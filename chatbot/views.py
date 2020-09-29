@@ -103,7 +103,7 @@ def post_message(request: Request) -> Response:
     conversation_id = request.data.get("conversationId")
     bot_session_id = request.data.get("botSessionId")
     question_id = request.data.get("questionId")
-    user_input = request.data.get("text")
+    user_input = request.data.get("text").lower()
 
     if conversation_id != "" and bot_session_id == "":
         return Response(_get_isabot_response(user_input, conversation_id), 200)
