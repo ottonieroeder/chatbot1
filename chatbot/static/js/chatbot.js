@@ -1,4 +1,4 @@
-var conversationState = {
+let conversationState = {
     conversationId: "",
     botSessionId: "",
     questionId: 0
@@ -84,6 +84,8 @@ async function sendUserInput(event) {
         addBotAnswerToLog(data.text);
         scrollToBottom();
         console.log("state after post: ", conversationState);
+    }).catch((error) => {
+        console.error(error);
     });
 }
 
@@ -99,6 +101,8 @@ function startBotCommunication() {
         addBotAnswerToLog(data.text);
         scrollToBottom();
         console.log("state after first contact: ", conversationState);
+    }).catch((error) => {
+        console.error(error);
     });
 }
 
