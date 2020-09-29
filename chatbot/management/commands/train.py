@@ -3,6 +3,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 class Command(BaseCommand):
     can_import_settings = True
 
@@ -13,6 +14,6 @@ class Command(BaseCommand):
 
         isabot = ChatBot(**settings.CHATTERBOT)
         trainer = ChatterBotCorpusTrainer(isabot)
-        trainer.train(*settings.CHATTERBOT['training_data'])
+        trainer.train(*settings.CHATTERBOT["training_data"])
 
         logger.info(f"Trained isabot successfully")

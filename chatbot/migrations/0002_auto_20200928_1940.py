@@ -8,71 +8,88 @@ import uuid
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('chatbot', '0001_initial'),
+        ("chatbot", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='BotSession',
+            name="BotSession",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, primary_key=True, serialize=False, unique=True)),
-                ('name', models.CharField(max_length=32)),
-                ('is_main', models.BooleanField(default=False)),
-                ('entry_keyword', models.CharField(blank=True, max_length=200)),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        primary_key=True,
+                        serialize=False,
+                        unique=True,
+                    ),
+                ),
+                ("name", models.CharField(max_length=32)),
+                ("is_main", models.BooleanField(default=False)),
+                ("entry_keyword", models.CharField(blank=True, max_length=200)),
             ],
         ),
         migrations.AlterModelOptions(
-            name='botquestion',
-            options={'ordering': ['position']},
+            name="botquestion",
+            options={"ordering": ["position"]},
         ),
         migrations.AddField(
-            model_name='botquestion',
-            name='accepted_keywords',
+            model_name="botquestion",
+            name="accepted_keywords",
             field=models.TextField(blank=True),
         ),
         migrations.AddField(
-            model_name='botquestion',
-            name='alternative_question',
+            model_name="botquestion",
+            name="alternative_question",
             field=models.TextField(blank=True),
         ),
         migrations.AddField(
-            model_name='botquestion',
-            name='position',
+            model_name="botquestion",
+            name="position",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='botquestion',
-            name='question',
+            model_name="botquestion",
+            name="question",
             field=models.TextField(blank=True),
         ),
         migrations.AddField(
-            model_name='conversation',
-            name='last_question',
+            model_name="conversation",
+            name="last_question",
             field=models.TextField(blank=True),
         ),
         migrations.AddField(
-            model_name='useranswer',
-            name='answer_text',
+            model_name="useranswer",
+            name="answer_text",
             field=models.TextField(blank=True),
         ),
         migrations.AlterField(
-            model_name='conversation',
-            name='session_id',
+            model_name="conversation",
+            name="session_id",
             field=models.CharField(max_length=64),
         ),
         migrations.AlterField(
-            model_name='useranswer',
-            name='bot_question',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='chatbot.botquestion'),
+            model_name="useranswer",
+            name="bot_question",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="chatbot.botquestion"
+            ),
         ),
         migrations.AlterField(
-            model_name='useranswer',
-            name='conversation',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='chatbot.conversation'),
+            model_name="useranswer",
+            name="conversation",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="chatbot.conversation"
+            ),
         ),
         migrations.AddField(
-            model_name='botquestion',
-            name='bot_session',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='chatbot.botsession'),
+            model_name="botquestion",
+            name="bot_session",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.PROTECT,
+                to="chatbot.botsession",
+            ),
         ),
     ]
