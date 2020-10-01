@@ -4,6 +4,7 @@ from chatbot.models import BotQuestion, BotSession, Conversation, UserAnswer
 
 
 class BotQuestionInline(admin.StackedInline):
+    readonly_fields = ["id"]
     model = BotQuestion
     extra = 0
 
