@@ -8,6 +8,8 @@ class BotQuestionInline(admin.StackedInline):
     model = BotQuestion
     extra = 0
 
+class BotQuestionAdmin(admin.ModelAdmin):
+    readonly_fields = ["id"]
 
 class BotSessionAdmin(admin.ModelAdmin):
     readonly_fields = ["id"]
@@ -27,3 +29,4 @@ class UserAnswerAdmin(admin.ModelAdmin):
 admin.site.register(BotSession, BotSessionAdmin)
 admin.site.register(Conversation, ConversationAdmin)
 admin.site.register(UserAnswer, UserAnswerAdmin)
+admin.site.register(BotQuestion, BotQuestionAdmin)
