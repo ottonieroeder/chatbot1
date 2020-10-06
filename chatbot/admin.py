@@ -4,15 +4,16 @@ from chatbot.models import BotQuestion, BotSession, Conversation, UserAnswer
 
 
 class BotQuestionInline(admin.StackedInline):
-    readonly_fields = ["id"]
+    # readonly_fields = ["id"]
     model = BotQuestion
     extra = 0
 
 class BotQuestionAdmin(admin.ModelAdmin):
-    readonly_fields = ["id"]
+    # readonly_fields = ["id"]
+    pass
 
 class BotSessionAdmin(admin.ModelAdmin):
-    readonly_fields = ["id"]
+    # readonly_fields = ["id"]
     inlines = [
         BotQuestionInline,
     ]
