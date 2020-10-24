@@ -126,11 +126,12 @@ a:hover {
 
 .modal-body, .card-body {
     padding: 0;
+    overflow: hidden;
 }
 
 .modal-content {
     border-radius: .5rem;
-    border: 1px solid rgba(0 0 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .dot {
