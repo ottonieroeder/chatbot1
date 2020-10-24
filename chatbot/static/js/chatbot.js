@@ -47,15 +47,21 @@ const emptyInputField = () => {
     document.querySelector("#user-input").value = "";
 }
 
+const emptyChatContainer = () => {
+    const container = document.querySelector("#chat");
+    container.textContent = '';
+}
+
 const scrollToBottom = () => {
     const chat = document.querySelector("#chat");
     chat.scrollTop = chat.scrollHeight;
 }
 
 const scrollToChat = ()  => {
-    const target = document.querySelector("#chat");
+    //  emptyChatContainer();
     // startBotCommunication();
-    target.scrollIntoView({behavior: "smooth"});
+    const target = document.querySelector("#isabot");
+    target.scrollIntoView({ block: "center", behavior: "smooth" });
 }
 
 const hideVideoModal = ()  => {
@@ -71,7 +77,9 @@ const hideFixedVideo = ()  => {
 }
 
 const addClickEventListenerToSessionButton = () => {
+    console.log("added listener")
     document.querySelector("#session-btn").addEventListener("click", scrollToChat);
+    document.querySelector("#session-btn-mobile").addEventListener("click", scrollToChat);
 }
 
 const addClickEventListenerToVideoContainer = () => {
