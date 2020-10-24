@@ -4,6 +4,8 @@ let conversationState = {
     questionId: 0
 }
 
+const videoURL = "https://www.ottonieroeder.de/wp-content/uploads/2020/10/isabot-Kopie.mp4"
+
 const setConversationState = (conversationId, botSessionId, questionId) => {
     conversationState.conversationId = conversationId;
     conversationState.botSessionId = botSessionId;
@@ -139,6 +141,21 @@ const addEventListenerToForm = () => {
     chatForm.addEventListener("submit", sendUserInput, false);
 }
 
+const isMobileDevice = () => {
+    return window.matchMedia("only screen and (max-width: 760px)").matches;
+};
+
+const loadVideo = () => {
+    if (!isMobileDevice()) {
+        const video = document.querySelector("#video");
+        const source = document.querySelector("#video").childNodes[1];
+        source.setAttribute('src', videoURL);
+        console.log(video)
+        video.load();
+    }
+}
+
+document.addEventListener("DOMContentLoaded", loadVideo());
 
 window.onload = (event) => {
     addEventListenerToForm();
