@@ -7,45 +7,237 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="icon" sizes="96x96" href="{% static 'img/favicon.ico' %}">
   <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Source+Code+Pro:wght@400;900&display=swap"
-    rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
-
   <title>ISABOT</title>
 </head>
 
 <body>
-  <header>
-    <div class="overlay"></div>
-    <video autoplay loop muted id="video">
-        <source src="http://www.ottonieroeder.de/wp-content/uploads/2020/10/isabot-Kopie.mp4" type="video/mp4">
-{#      <source src="{% static 'img/isabot.mp4' %}" type="video/mp4">#}
-    </video>
-    <div class="container-fluid custom-height">
-      <h1 class="mt-5 d-none d-md-block">ISABOT</h1>
-      <h2 class="mt-3 d-none d-md-block">investing in a post-labour future</h2>
-      <div class="row mt-5 justify-content-end">
-        <div class="col-xs-12 col-md-6 col-xl-4">
-          <div class="chat-container">
-            <div id="chat" class="chat">
-            </div>
-            <form id="chatForm" class="mt-2" autocomplete="off">
-              <div class="input-container input-group">
-                <label for="user-input"></label><input id="user-input" class="form-control" type="text"
-                  placeholder="Talk to your consultant ..." />
-                <div class="input-group-append">
-                  <button id="submit-btn" class="btn btn-primary">Send</button>
+    <div class="container-fluid isa-main-container">
+        <section id="session-button" class="isa-video d-none d-md-block button-container">
+            <button id="session-btn" type="button" class="btn btn-primary shadow-lg">Start new free trial session</button>
+        </section>
+        <section id="isa-video" class="isa-video d-none d-md-block">
+            <div id="isa-video-modal" class="modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                          <span id="red-dot" class="dot red"></span>
+                          <span id="yellow-dot" class="dot yellow"></span>
+                          <span id="green-dot" class="dot green"></span>
+                      </div>
+                      <div class="modal-body">
+                         <video autoplay loop muted id="video">
+                            <source src="http://www.ottonieroeder.de/wp-content/uploads/2020/10/isabot-Kopie.mp4" type="video/mp4">
+                        </video>
+                      </div>
+                    </div>
                 </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <h1 class="mt-5 d-block d-md-none">ISABOT</h1>
-      <h2 class="mt-3 d-block d-md-none">investing in a post-labour future</h2>
+            </div>
+        </section>
+        <section id="isa-video-fixed-bottom" class="d-none d-md-block">
+            <div id="isa-video-fixed" class="card card-fixed">
+                <div class="card-header">
+                    <span id="red-dot-fixed" class="dot-fixed red"></span>
+                    <span id="yellow-dot-fixed" class="dot-fixed yellow"></span>
+                    <span id="green-dot-fixed" class="dot-fixed green"></span>
+                </div>
+                <div class="card-body">
+                    <video autoplay loop muted id="video" class="video-fixed">
+                        <source src="http://www.ottonieroeder.de/wp-content/uploads/2020/10/isabot-Kopie.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </section>
+        <section id="main" class="container main">
+            <h2 class="text-center display-4">ISABOT</h2>
+            <h1 class="text-center display-3">Invest in a post-labour future</h1>
+            <p class="text-center sub-heading">Your consultant to find companies developing automating technologies for the creative field, invest in your own redundancy, and discover a post-labour future</p>
+        </section>
+        <section id="isabot" class="container mt-5 isabot shadow-lg">
+            <div class="card chat-card">
+                <div class="card-header chat-card-header">
+                    <span id="red-dot-chat" class="dot red"></span>
+                    <span id="yellow-dot-chat" class="dot yellow"></span>
+                    <span id="green-dot-chat" class="dot green"></span>
+                </div>
+                <div id="chat" class="chat"></div>
+                <form id="chat-form" autocomplete="off">
+                    <div class="input-container input-group">
+                        <label for="user-input"></label>
+                        <input id="user-input" class="form-control" type="text" placeholder="Talk to your consultant ..." />
+                        <div class="input-group-append">
+                            <button id="submit-btn" class="btn btn-primary">Send</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section id="testimonials" class="container testimonials mt-5">
+            <h2 class="text-center display-4">Client testimonials</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    <div class="card testimonial-card">
+                        <img class="card-img-top img-thumbnail rounded-circle testimonial-img" src="{% static 'img/testimonial-0.jpeg' %}" alt="Image testimonial">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Adrien Yost,<br />former Architect</h5>
+                            <p class="card-text text-center">“Isabot helped me to find the perfect business to invest in, now I am a free person!”</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card testimonial-card">
+                        <img class="card-img-top img-thumbnail rounded-circle testimonial-img" src="{% static 'img/testimonial-2.jpeg' %}" alt="Image testimonial">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Leanna Yundt,<br />former Architect</h5>
+                            <p class="card-text text-center">“Isabot helped me to find the perfect business to invest in, now I am a free person!”</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card testimonial-card">
+                        <img class="card-img-top img-thumbnail rounded-circle testimonial-img" src="{% static 'img/testimonial-1.jpeg' %}" alt="Image testimonial">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Anabelle Witting,<br />former Architect</h5>
+                            <p class="card-text text-center">“Isabot helped me to find the perfect business to invest in, now I am a free person!”</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="stats" class="stats mt-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <div class="card stats-card">
+                            <div class="card-body">
+                                <h5 class="card-title text-center display-4">250,000+</h5>
+                                <p class="card-text text-center">Total Investors</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card stats-card">
+                            <div class="card-body">
+                                <h5 class="card-title text-center display-4">$150 M+</h5>
+                                <p class="card-text text-center">Total Invested</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="card stats-card">
+                            <div class="card-body">
+                                <h5 class="card-title text-center display-4">150+</h5>
+                                <p class="card-text text-center">Automating Technology Projects Funded</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="projects" class="container projects mt-5">
+            <h2 class="text-center display-4">Discover automating technology projects</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="card testimonial-card">
+                        <img class="card-img-top img-thumbnail project-img" src="{% static 'img/ai-1.jpg' %}" alt="project image">
+                        <div class="card-body">
+                            <h5 class="card-title">A(I)rchitecture</h5>
+                            <div class="row">
+                                <div class="col">
+                                    $6.66M<br>Raised
+                                </div>
+                                <div class="col">
+                                    19.2K<br>Investors
+                                </div>
+                                <div class="col">
+                                    $99M<br>Min Invest
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card testimonial-card">
+                        <img class="card-img-top img-thumbnail project-img" src="{% static 'img/ai-2.jpg' %}" alt="project image">
+                        <div class="card-body">
+                            <h5 class="card-title">A(I)rchitecture</h5>
+                            <div class="row">
+                                <div class="col">
+                                    $6.66M<br>Raised
+                                </div>
+                                <div class="col">
+                                    19.2K<br>Investors
+                                </div>
+                                <div class="col">
+                                    $99M<br>Min Invest
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card testimonial-card">
+                        <img class="card-img-top img-thumbnail project-img" src="{% static 'img/ai-3.jpg' %}" alt="project image">
+                        <div class="card-body">
+                            <h5 class="card-title">A(I)rchitecture</h5>
+                            <div class="row">
+                                <div class="col">
+                                    $6.66M<br>Raised
+                                </div>
+                                <div class="col">
+                                    19.2K<br>Investors
+                                </div>
+                                <div class="col">
+                                    $99M<br>Min Invest
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="about" class="container mt-5 about">
+            <h2 class="text-center display-4">About</h2>
+            <p class="text-center sub-heading">Isabot is an artistic project by Ottonie von Roeder in collaboration with Baltan Laboratories,
+                the accountancy firm Joanknecht with their employee Isabella van den Heuvel and the programmer Norma Driske.</p>
+            <p class="text-center sub-heading">
+                The project is generously supported by the Creative Industries Fund NL.
+            </p>
+            <p class="text-center sub-heading">
+               www.ottonieroeder.de | www.baltanlaboratories.org | www.joanknecht.nl | Norma??
+            </p>
+        </section>
     </div>
-  </header>
+    {#  <header>#}
+{#    <div class="overlay"></div>#}
+{#    <video autoplay loop muted id="video">#}
+{#        <source src="http://www.ottonieroeder.de/wp-content/uploads/2020/10/isabot-Kopie.mp4" type="video/mp4">#}
+{#      <source src="{% static 'img/isabot.mp4' %}" type="video/mp4">#}
+{#    </video>#}
+{#    <div class="container-fluid custom-height">#}
+{#      <h1 class="mt-5 d-none d-md-block">ISABOT</h1>#}
+{#      <h2 class="mt-3 d-none d-md-block">investing in a post-labour future</h2>#}
+{#      <div class="row mt-5 justify-content-end">#}
+{#        <div class="col-xs-12 col-md-6 col-xl-4">#}
+{#          <div class="chat-container">#}
+{#            <div id="chat" class="chat">#}
+{#            </div>#}
+{#            <form id="chatForm" class="mt-2" autocomplete="off">#}
+{#              <div class="input-container input-group">#}
+{#                <label for="user-input"></label><input id="user-input" class="form-control" type="text"#}
+{#                  placeholder="Talk to your consultant ..." />#}
+{#                <div class="input-group-append">#}
+{#                  <button id="submit-btn" class="btn btn-primary">Send</button>#}
+{#                </div>#}
+{#              </div>#}
+{#            </form>#}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{#      <h1 class="mt-5 d-block d-md-none">ISABOT</h1>#}
+{#      <h2 class="mt-3 d-block d-md-none">investing in a post-labour future</h2>#}
+{#    </div>#}
+{#  </header>#}
   <script src="{% static 'cookiejs/js.cookie.min.js' %}"></script>
   <script src="{% static 'js/chatbot.js' %}"></script>
 

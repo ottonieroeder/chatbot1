@@ -52,7 +52,32 @@ const scrollToBottom = () => {
     chat.scrollTop = chat.scrollHeight;
 }
 
+const scrollToChat = ()  => {
+    const target = document.querySelector("#chat");
+    // startBotCommunication();
+    target.scrollIntoView({behavior: "smooth"});
+}
 
+const hideVideoModal = ()  => {
+    const target = document.querySelector("#isa-video-modal");
+    const targetFixedVideo = document.querySelector("#isa-video-fixed");
+    target.classList.add("hide-video");
+    targetFixedVideo.classList.add("show-video");
+}
+
+const hideFixedVideo = ()  => {
+    const target = document.querySelector("#isa-video-fixed");
+    target.classList.remove("show-video");
+}
+
+const addClickEventListenerToSessionButton = () => {
+    document.querySelector("#session-btn").addEventListener("click", scrollToChat);
+}
+
+const addClickEventListenerToVideoContainer = () => {
+    document.querySelector("#red-dot").addEventListener("click", hideVideoModal);
+    document.querySelector("#red-dot-fixed").addEventListener("click", hideFixedVideo);
+}
 
 async function sendUserInput(event) {
     event.preventDefault();
@@ -107,12 +132,15 @@ function startBotCommunication() {
 }
 
 const addEventListenerToForm = () => {
-    const chatForm = document.querySelector("#chatForm");
+    const chatForm = document.querySelector("#chat-form");
     chatForm.addEventListener("submit", sendUserInput, false);
 }
+
 
 window.onload = (event) => {
     console.log('page is fully loaded');
     addEventListenerToForm();
+    addClickEventListenerToSessionButton();
+    addClickEventListenerToVideoContainer();
     startBotCommunication();
 };
