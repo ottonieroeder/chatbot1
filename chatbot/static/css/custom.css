@@ -102,11 +102,11 @@ a:hover {
 .modal {
     display: inline;
     top: 3rem;
-    width: -moz-min-content;
+    width: 100%;
 }
 
 .modal-dialog {
-    width: fit-content;
+    width: 640px;
     max-width: none;
 }
 
