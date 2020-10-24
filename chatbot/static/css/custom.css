@@ -69,6 +69,7 @@ html, body {
 .modal {
     display: inline;
     top: 3rem;
+    width: -moz-min-content;
 }
 
 .modal-dialog {
