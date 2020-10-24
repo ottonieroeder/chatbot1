@@ -86,7 +86,6 @@ async function sendUserInput(event) {
     addUserInputToLog(inputValue);
     scrollToBottom();
     const url = window.location.origin + postMessageUrl;
-    console.log("state before fetch", conversationState)
     await fetch(url, {
         method: 'POST',
         credentials: 'same-origin',
@@ -108,16 +107,13 @@ async function sendUserInput(event) {
         setConversationState(data.conversationId, data.botSessionId, data.questionId);
         addBotAnswerToLog(data.text);
         scrollToBottom();
-        console.log("state after post: ", conversationState);
     }).catch((error) => {
         console.error(error);
     });
 }
 
 function startBotCommunication() {
-    console.log("in start")
     const url = window.location.origin + getConversationUrl;
-    console.log(window.location.origin + getConversationUrl)
     fetch(url, {
         method: 'GET',
         credentials: 'same-origin',
@@ -125,7 +121,6 @@ function startBotCommunication() {
         setConversationState(data.conversationId, data.botSessionId, data.questionId);
         addBotAnswerToLog(data.text);
         scrollToBottom();
-        console.log("state after first contact: ", conversationState);
     }).catch((error) => {
         console.error(error);
     });
@@ -138,7 +133,6 @@ const addEventListenerToForm = () => {
 
 
 window.onload = (event) => {
-    console.log('page is fully loaded');
     addEventListenerToForm();
     addClickEventListenerToSessionButton();
     addClickEventListenerToVideoContainer();
