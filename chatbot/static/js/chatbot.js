@@ -147,11 +147,12 @@ const isMobileDevice = () => {
 
 const loadVideo = () => {
     if (!isMobileDevice()) {
-        const video = document.querySelector("#video");
-        const source = document.querySelector("#video").childNodes[1];
-        source.setAttribute('src', videoURL);
-        console.log(video)
+        let video = document.querySelector("#video");
+        let videoMini = document.querySelector("#video-mini");
+        video.childNodes[1].setAttribute('src', videoURL);
+        videoMini.childNodes[1].setAttribute('src', videoURL);
         video.load();
+        videoMini.load();
     }
 }
 
