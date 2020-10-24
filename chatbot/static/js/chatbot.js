@@ -59,11 +59,12 @@ const scrollToBottom = () => {
     chat.scrollTop = chat.scrollHeight;
 }
 
-const scrollToChat = ()  => {
-    //  emptyChatContainer();
-    // startBotCommunication();
+const scrollToChat = async ()  => {
+    emptyChatContainer();
+    await startBotCommunication();
     const target = document.querySelector("#isabot");
     target.scrollIntoView({ block: "center", behavior: "smooth" });
+
 }
 
 const hideVideoModal = ()  => {
@@ -124,7 +125,7 @@ async function sendUserInput(event) {
 
 function startBotCommunication() {
     const url = window.location.origin + getConversationUrl;
-    fetch(url, {
+    return fetch(url, {
         method: 'GET',
         credentials: 'same-origin',
     }).then(response => response.json()).then(data => {
@@ -156,11 +157,15 @@ const loadVideo = () => {
     }
 }
 
-document.addEventListener("DOMContentLoaded", loadVideo());
-
-window.onload = (event) => {
+const load = () => {
     addEventListenerToForm();
     addClickEventListenerToSessionButton();
     addClickEventListenerToVideoContainer();
+    loadVideo();
+}
+
+document.addEventListener("DOMContentLoaded", load);
+
+window.onload = (event) => {
     startBotCommunication();
 };
