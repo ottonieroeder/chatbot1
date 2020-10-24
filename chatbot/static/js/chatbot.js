@@ -157,15 +157,11 @@ const loadVideo = () => {
     }
 }
 
-const load = () => {
+document.addEventListener("DOMContentLoaded", loadVideo());
+
+window.onload = (event) => {
     addEventListenerToForm();
     addClickEventListenerToSessionButton();
     addClickEventListenerToVideoContainer();
-    loadVideo();
-}
-
-document.addEventListener("DOMContentLoaded", load);
-
-window.onload = (event) => {
     startBotCommunication();
 };
