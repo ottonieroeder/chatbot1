@@ -4,7 +4,7 @@ let conversationState = {
     questionId: 0
 }
 
-const videoURL = "https://www.ottonieroeder.de/wp-content/uploads/2020/10/isabot-Kopie.mp4"
+const videoURL = "https://www.ottonieroeder.de/wp-content/uploads/2020/10/isabot.neu_.mp4"
 
 const setConversationState = (conversationId, botSessionId, questionId) => {
     conversationState.conversationId = conversationId;
@@ -17,7 +17,7 @@ const addUserInputToLog = (inputValue) => {
     const containerRow = document.createElement("div")
     const containerCol = document.createElement("div")
     const tag = document.createElement("p");
-    const text = document.createTextNode("You: " + inputValue);
+    const text = document.createTextNode(inputValue);
     containerRow.classList.add("row");
     containerRow.classList.add("no-gutters");
     containerRow.classList.add("justify-content-end");
@@ -34,7 +34,7 @@ const addBotAnswerToLog = (botResponse) => {
     const tag = document.createElement("p");
     const containerRow = document.createElement("div");
     const containerCol = document.createElement("div");
-    const text = document.createTextNode("ISABOT: " + botResponse);
+    const text = document.createTextNode(botResponse);
     containerRow.classList.add("row");
     containerCol.classList.add("col-7");
     tag.classList.add("bubble-left");
@@ -70,6 +70,7 @@ const scrollToChat = async ()  => {
 const hideVideoModal = ()  => {
     const target = document.querySelector("#isa-video-modal");
     const targetFixedVideo = document.querySelector("#isa-video-fixed");
+    target.classList.remove("show-video");
     target.classList.add("hide-video");
     targetFixedVideo.classList.add("show-video");
 }
@@ -79,20 +80,31 @@ const hideFixedVideo = ()  => {
     target.classList.remove("show-video");
 }
 
+const showVideoModal = () => {
+    const target = document.querySelector("#isa-video-modal");
+    const targetFixedVideo = document.querySelector("#isa-video-fixed");
+    targetFixedVideo.classList.remove("show-video");
+    targetFixedVideo.classList.add("hide-video");
+    target.classList.add("show-video");
+}
+
 const addClickEventListenerToSessionButton = () => {
-    console.log("added listener")
     document.querySelector("#session-btn").addEventListener("click", scrollToChat);
     document.querySelector("#session-btn-mobile").addEventListener("click", scrollToChat);
 }
 
 const addClickEventListenerToVideoContainer = () => {
-    document.querySelector("#red-dot").addEventListener("click", hideVideoModal);
+    document.querySelector("#yellow-dot").addEventListener("click", hideVideoModal);
     document.querySelector("#red-dot-fixed").addEventListener("click", hideFixedVideo);
+    document.querySelector("#green-dot-fixed").addEventListener("click", showVideoModal);
 }
 
 async function sendUserInput(event) {
     event.preventDefault();
     const inputValue = document.querySelector("#user-input").value;
+    if (inputValue === "") {
+        return;
+    }
     emptyInputField();
     addUserInputToLog(inputValue);
     scrollToBottom();
