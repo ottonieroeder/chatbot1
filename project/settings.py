@@ -118,7 +118,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
 MEDIA_URL = "/media/"
