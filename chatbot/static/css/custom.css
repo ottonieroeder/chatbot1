@@ -112,6 +112,14 @@ a:hover {
 }
 
 /* video modal */
+#isa-video-modal {
+    position: absolute;
+}
+
+#isa-video-modal .modal-header {
+    cursor: move;
+    z-index: 10;
+}
 
 #isa-video-fixed {
     position: fixed;
