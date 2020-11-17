@@ -321,7 +321,7 @@ video {
 
 .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #c5c5c5;
-    font-size: small;
+    font-size: 1rem;
     font-weight: 100;
     opacity: 1; /* Firefox */
 }
