@@ -410,6 +410,7 @@ input, .form-control {
 .bubble-left {
     position: relative;
     width: fit-content;
+    float: left;
     padding: 1rem;
     background: var(--color-red);
     color: var(--color-pink);
